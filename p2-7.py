@@ -12,15 +12,16 @@ def polynomial(p):
     result = []
     
     def argument(arg, degree):
-        if arg == 0 and degree == 0:
+        if arg == 0:
             return ''
         elif degree == 0:
-            return str(arg) if arg < 0 else f'+{arg}'
+            return f'{arg}x' if arg < 0 else f'+{arg}x'
         elif arg == 1:
-            return 
+            return f'-x' if arg < 0 else f'+x'
     
     for num, arg in enumerate(p):
         degree = len(p) - num
+        result.append(argument(num, degree))
         
         
 
