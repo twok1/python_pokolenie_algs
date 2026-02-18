@@ -31,7 +31,7 @@ def polynomial(p):
         
 
 # print(polynomial((-1, -1)))
-print(polynomial((1, 3, -1, 1, -2)))
+# print(polynomial((1, 3, -1, 1, -2)))
 # print(polynomial((1, 1, 1)))
 
 def polynomial_creator(p):
@@ -56,23 +56,12 @@ def polynomial_creator(p):
     return f
 
 
+import numpy
 
 def polynomial_product(p1, p2):
-    result = []
-    
-    def argument(arg, degree, num):
-        if not arg:
-            return ''
-        result = f'+{arg}x^{degree}' if arg > 0 else f'{arg}x^{degree}'
-        result = re.sub(r'x\^0', r'', result)
-        result = result.replace('+', '') if not num else result
-        result = re.sub(r'^([+-])1x', r'\1x', result)
-        result = re.sub(r'^1x', r'x', result)
-        result = re.sub(r'x\^1$', 'x', result)
-        return result
-        
-    
-    for num, arg in enumerate(p):
-        degree = len(p) - num - 1
-        result.append(argument(arg, degree, num))
-    return ''.join(result)
+    return tuple(numpy.convolve(p1, p2).tolist())
+
+
+print(polynomial_product((2, -4, 5), (3, 2)))
+
+# print(polynomial_product((0, 6, 8, 7, 10)))
