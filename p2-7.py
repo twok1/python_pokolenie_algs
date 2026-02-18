@@ -11,20 +11,68 @@ import re
 def polynomial(p):
     result = []
     
-    def argument(arg, degree):
-        if arg == 0:
+    def argument(arg, degree, num):
+        if not arg:
             return ''
-        elif degree == 0:
-            return f'{arg}x' if arg < 0 else f'+{arg}x'
-        elif arg == 1:
-            return f'-x' if arg < 0 else f'+x'
+        result = f'+{arg}x^{degree}' if arg > 0 else f'{arg}x^{degree}'
+        result = re.sub(r'x\^0', r'', result)
+        result = result.replace('+', '') if not num else result
+        result = re.sub(r'^([+-])1x', r'\1x', result)
+        result = re.sub(r'^1x', r'x', result)
+        result = re.sub(r'x\^1$', 'x', result)
+        return result
+        
     
     for num, arg in enumerate(p):
-        degree = len(p) - num
-        result.append(argument(num, degree))
+        degree = len(p) - num - 1
+        result.append(argument(arg, degree, num))
+    return ''.join(result)
         
         
 
-print(polynomial((-1, -1)))
+# print(polynomial((-1, -1)))
 print(polynomial((1, 3, -1, 1, -2)))
-print(polynomial((1, 1, 1)))
+# print(polynomial((1, 1, 1)))
+
+def polynomial_creator(p):
+    def f(x):
+        result = []
+        def argument(arg, degree, num):
+            if not arg:
+                return ''
+            result = f'+{arg}*x**{degree}' if arg > 0 else f'{arg}*x**{degree}'
+            result = re.sub(r'\*x\*\*0', r'', result)
+            result = result.replace('+', '') if not num else result
+            result = re.sub(r'^([+-])1\*x', r'\1x', result)
+            result = re.sub(r'^1\*x', r'x', result)
+            result = re.sub(r'x\*\*1$', 'x', result)
+            return result
+            
+        
+        for num, arg in enumerate(p):
+            degree = len(p) - num - 1
+            result.append(argument(arg, degree, num))
+        return eval(''.join(result).replace('x', f'({x})'))
+    return f
+
+
+
+def polynomial_product(p1, p2):
+    result = []
+    
+    def argument(arg, degree, num):
+        if not arg:
+            return ''
+        result = f'+{arg}x^{degree}' if arg > 0 else f'{arg}x^{degree}'
+        result = re.sub(r'x\^0', r'', result)
+        result = result.replace('+', '') if not num else result
+        result = re.sub(r'^([+-])1x', r'\1x', result)
+        result = re.sub(r'^1x', r'x', result)
+        result = re.sub(r'x\^1$', 'x', result)
+        return result
+        
+    
+    for num, arg in enumerate(p):
+        degree = len(p) - num - 1
+        result.append(argument(arg, degree, num))
+    return ''.join(result)
