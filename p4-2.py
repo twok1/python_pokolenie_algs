@@ -59,6 +59,7 @@ def longest_substring_without_vowels(s):
 
 # print(longest_substring_without_vowels('bcdgf'))         # bcdgf
 
+
 def min_digit_sum(a, b):
     def sum_digits(num):
         if not num:
