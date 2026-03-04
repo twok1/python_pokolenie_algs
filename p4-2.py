@@ -62,11 +62,12 @@ def longest_substring_without_vowels(s):
 
 def min_digit_sum(a, b):
     def sum_digits(num):
-        if not num:
-            return 0
+        if num < 10:
+            return num
         return sum_digits(num // 10) + num % 10
     prom = tuple(sum_digits(i) for i in range(a, b+1))
-    result = tuple(1 if i == min(prom) else 0 for i in prom)
+    m = min(prom)
+    result = tuple(1 if i == m else 0 for i in prom)
     return(sum(result))
 
 print(min_digit_sum(5, 18345))
