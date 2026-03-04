@@ -1,0 +1,63 @@
+
+def mystery(n):
+    return n ** 2 - 1
+
+def mystery(n):
+    if n % 2:
+        return n + 1
+    else:
+        return n + 2
+    
+
+def mystery(n):
+    return sum((i for i in range(n + 1)))
+
+def mystery(n):
+    d = {
+        1: 0,
+        0: 1,
+        8: 2,
+        9: 1,
+        3: 0,
+        4: 0,
+        6: 1,
+        2: 0,
+    }
+    if n // 10 == 0:
+        return d[n % 10]
+    else:
+        return mystery(n // 10) + d[n % 10]
+
+def sum_of_squares(n):
+    return sum((i ** 2 for i in range(1, n + 1)))
+
+
+def even_odd(nums):
+    return len({i % 2 for i in nums}) == 1
+
+def hamming_distance(s1, s2):
+    result = 0
+    for i in range(len(s1)):
+        if s1[i] != s2[i]:
+            result += 1
+    return result
+
+
+# print(hamming_distance('abcd', 'efgh'))
+
+
+def longest_substring_without_vowels(s):
+    this_line, result = 0, 0
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    for i in s:
+        if i in vowels:
+            result = max(result, this_line)
+            this_line = 0
+        else:
+            this_line += 1
+    return max(result, this_line)
+
+# print(longest_substring_without_vowels('bcdgf'))         # bcdgf
+
+def min_digit_sum(a, b):
+    pass
