@@ -99,5 +99,22 @@ def divisible(n):
             
             
 
-print(divisible(22))
+# print(divisible(22))
 
+from math import ceil, log10
+
+def make_palindrome(n):
+    def get_i_num(num, i):
+        return num // (10 ** i) % 10
+    def check_palindrome(num):
+        for i in range(ceil(log10(num)/2)):
+            print(get_i_num(num, i))
+    k = 0
+    def recur(n):
+        
+        if k == 5:
+            return -1
+    check_palindrome(n)
+
+make_palindrome(121)
+make_palindrome(1221)
