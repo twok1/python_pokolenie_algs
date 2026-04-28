@@ -1,4 +1,7 @@
 
+from math import log
+
+
 def mystery(n):
     return n ** 2 - 1
 
@@ -70,4 +73,31 @@ def min_digit_sum(a, b):
     result = tuple(1 if i == m else 0 for i in prom)
     return(sum(result))
 
-print(min_digit_sum(5, 18345))
+# print(min_digit_sum(5, 18345))
+
+
+def  avg_values(nums):
+    result =[]
+    if nums :
+        result = [float(nums[0])] 
+        for i, k in enumerate(nums[1:],start=1):
+            result.append(sum((nums[0:i + 1])) / (i + 1))
+    return result
+    
+# print(avg_values([]))
+# print(avg_values([10, 20, 30, 40, 50]))
+
+from math import floor, log10
+
+def divisible(n):
+    result = 0
+    for i in range(floor(log10(n)) + 1):
+        k = n // (10 ** i) % 10
+        if k and int(n / k) == n / k:
+            result += 1
+    return result
+            
+            
+
+print(divisible(22))
+
