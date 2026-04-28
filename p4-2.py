@@ -70,4 +70,21 @@ def min_digit_sum(a, b):
     result = tuple(1 if i == m else 0 for i in prom)
     return(sum(result))
 
-print(min_digit_sum(5, 18345))
+# print(min_digit_sum(5, 18345))
+
+
+def  avg_values(nums):
+    result =[]
+    if nums :
+        result = [float(nums[0])] 
+        for i, k in enumerate(nums[1:],start=1):
+            result.append(sum((nums[0:i + 1])) / (i + 1))
+    return result
+    
+# print(avg_values([]))
+# print(avg_values([10, 20, 30, 40, 50]))
+
+def divisible(n):
+    pass
+
+divisible(22)
