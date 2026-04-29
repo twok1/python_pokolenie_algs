@@ -101,3 +101,5 @@ def divisible(n):
 
 print(divisible(22))
 
+def make_palindrome():
+    pass
