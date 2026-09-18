@@ -101,27 +101,97 @@ def divisible(n):
 
 # print(divisible(22))
 
-from math import ceil, log10
+from math import floor, log10
 
 def make_palindrome(n):
     def get_i_num(num, i):
         return num // (10 ** i) % 10
-    def check_palindrome(num):
-        start = k = ceil(log10(num)/2) - 1
-        for i in range(start, -1, -1):
-            if get_i_num(num, i) != get_i_num(num, k):
-                return -1
-            k += 1
-        return num
-    def reverse(num):
-        result = []
-        for i in range(floor(log10(num)) + 1):
-            result.append
-    k = 0
-    while k < 5 or check_palindrome(n) < 0:
-        n = reversed(n)
     
-    return check_palindrome(n)
+    def get_num_len(num):
+        return floor(log10(num)) + 1
+    
+    def check_palindrome(num):
+        length = get_num_len(num)
+        for i in range(length // 2):
+            if get_i_num(num, i) != get_i_num(num, length - 1 - i):
+                return None
+        return num
+    
+    def reverse_num(num):
+        length = get_num_len(num)
+        reversed_num = 0
+        for i in range(length):
+            reversed_num += get_i_num(num, i) * 10 ** (length - 1 - i)
+        return reversed_num
+    
+    if check_palindrome(n) == n:
+        return n
+    
+    retries = 0
+    while retries < 5:
+        n += reverse_num(n)
+        if check_palindrome(n) == n:
+            return n
+        retries += 1
+    return -1
+    
 
-make_palindrome(121)
-make_palindrome(1221)
+# print(make_palindrome(121))
+# print(make_palindrome(1221))
+# print(make_palindrome(12321))
+# print(make_palindrome(12345))
+# print(make_palindrome(123456))
+# print(make_palindrome(12346))
+# print(make_palindrome(196))
+# print(make_palindrome(1000000))
+
+# def make_palindrome(n):
+#     num = str(n)
+#     for i in range(ceil(len(num)/2)):
+#         if num[i] != num[-1]:
+#             return -1
+#     return n
+
+# print(make_palindrome(123454321))
+
+
+
+def make_palindrome(num: int, attempts=6) -> int:
+    def reverse_int(num: int) -> int:
+        res = 0
+        while num > 0:
+            res = res * 10 + num % 10
+            num //= 10
+        return res
+    
+    for _ in range(attempts):
+        rev = reverse_int(num)
+        if num == rev:
+            return num 
+        num += rev
+    return -1
+
+# print(make_palindrome(121))
+# print(make_palindrome(1221))
+# print(make_palindrome(12321))
+# print(make_palindrome(12345))
+# print(make_palindrome(123456))
+# print(make_palindrome(12346))
+# print(make_palindrome(196))
+# print(make_palindrome(1000000))
+
+
+def fizz_buzz(n):
+    result = []
+    for i in range(1, n + 1):
+        if not i % 15:
+            result.append('FizzBuzz')
+        elif not i % 5:
+            result.append('Buzz')
+        elif not i % 3:
+            result.append('Fizz')
+        else:
+            result.append(i)
+    return result
+
+# print(fizz_buzz(20))
