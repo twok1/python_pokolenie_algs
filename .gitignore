@@ -1,1 +1,4 @@
 venv/
+check.conf
+__pycache__/
+tests/

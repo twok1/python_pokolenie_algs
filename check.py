@@ -73,3 +73,7 @@ def test_exec(test_input, expected):
         exec(test_input, module.__dict__)
         result = sys.stdout.getvalue().strip()
         assert result == expected
+
+
+if __name__ == '__main__':
+    sys.exit(pytest.main([__file__, '-v', '-s']))
