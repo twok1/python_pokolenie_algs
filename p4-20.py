@@ -46,3 +46,18 @@ def calculate_sum(n):
     return - (1 + n - 1) * (n - 1) // 2 + n * n
     
 # print(calculate_sum(5))
+
+def sold_out(n, m):
+    result = max(2*m - 2*n + 2, 1)
+    return  result
+
+def calculate_sum(n):
+    return (2**(n + 1) - 1)
+
+
+def number_of_handshakes(n):
+    return n * (n - 1) // 2
+
+import math
+def count_friends(k):
+    return int(1 + math.sqrt(1 + 8*k)) // 2
